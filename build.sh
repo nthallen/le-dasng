@@ -9,7 +9,7 @@ function msg {
 
 function print_usage {
 cat  <<EOF
-$0 [cross]
+$0 [cross|am335x|imx7]
 EOF
 }
 
@@ -19,9 +19,13 @@ if [ "$1" = "--help" -o "$1" = "-h" ]; then
 fi
 
 crargs=''
-if [ "$1" = "cross" ]; then
+if [ "$1" = "cross" -o "$1" = "am335x"]; then
   shift
-  crname='-cross'
+  crname='-am335x'
+  tgt=am335x
+elif [ "$1" = "imx7" ]; then
+  crname='-imx7'
+  tgt=imx7
 else
   crname=''
 fi
@@ -46,8 +50,8 @@ if [ ! -d .git ]; then
 fi
 branch=`git rev-parse --abbrev-ref HEAD`
 if [ -n "$crname" ]; then
-  crargs=" -DCMAKE_TOOLCHAIN_FILE=$relsrcroot/arm-toolchain.cmake"
-  crargs+=" -DCMAKE_STAGING_PREFIX=/opt/linkeng/am335x-$branch"
+  crargs=" -DCMAKE_TOOLCHAIN_FILE=$relsrcroot/$tgt-toolchain.cmake"
+  crargs+=" -DCMAKE_STAGING_PREFIX=/opt/linkeng/$tgt-$branch"
 fi
 builddir="../build$crname-$branch$subdir"
 if [ ! -d $builddir ]; then
