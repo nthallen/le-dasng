@@ -19,15 +19,17 @@ if [ "$1" = "--help" -o "$1" = "-h" ]; then
 fi
 
 crargs=''
-if [ "$1" = "cross" -o "$1" = "am335x"]; then
+if [ "$1" = "cross" -o "$1" = "am335x" ]; then
   shift
   crname='-am335x'
   tgt=am335x
 elif [ "$1" = "imx7" ]; then
+  shift
   crname='-imx7'
   tgt=imx7
 else
   crname=''
+  tgt=''
 fi
 
 if [ -n "$1" ]; then
