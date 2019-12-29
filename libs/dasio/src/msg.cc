@@ -208,7 +208,7 @@ int msgv_func( int level, const char *fmt, va_list args ) {
   char *tbuf = asctime(gmtime(&timespec.tv_sec));
   
   //Below lies second-time
-  /* time_t now = time(NULL);
+  /* le_time_t now = time(NULL);
   struct tm *tm = gmtime(&now);
   char *tbuf = asctime(tm);
   */

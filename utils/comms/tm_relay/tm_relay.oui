@@ -1,0 +1,16 @@
+<package> tm_relay
+<include> oui
+<include> tm_client msg server
+<include> "tm_relay.h"
+<include> "dasio/tm.h"
+
+<opts> "N:"
+<sort>
+
+<unsort>
+<blank>
+
+<package> appid_default
+<include> "dasio/appid.h"
+<defs>
+  DAS_IO::AppID_t DAS_IO::AppID("tm_relay", "tm_relay", "V1.0");

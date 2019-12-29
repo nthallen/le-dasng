@@ -345,7 +345,7 @@ bool DAS_IO::Interface::not_uint16(uint16_t &output_val) {
 bool DAS_IO::Interface::not_ISO8601(double &Time, bool w_hyphens) {
   struct tm buft;
   float secs;
-  time_t ltime;
+  le_time_t ltime;
 
   if (not_ndigits(4, buft.tm_year) ||
       (w_hyphens && not_str("-",1)) ||
@@ -363,7 +363,7 @@ bool DAS_IO::Interface::not_ISO8601(double &Time, bool w_hyphens) {
   buft.tm_mon -= 1;
   buft.tm_sec = 0;
   ltime = mktime(&buft);
-  if (ltime == (time_t)(-1))
+  if (ltime == (le_time_t)(-1))
     report_err("%s: mktime returned error", iname);
   else Time = ltime + secs;
   return false;

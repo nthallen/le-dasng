@@ -30,7 +30,7 @@ class collector : public tm_generator {
     TM_data_rcvr_def *receive(const char *name, void *data,
         int data_size, int synch);
   protected:
-    void commit_tstamp( mfc_t MFCtr, time_t time );
+    void commit_tstamp( mfc_t MFCtr, le_time_t time );
     static unsigned short majf_row, minf_row;
     unsigned short next_minor_frame;
   private:

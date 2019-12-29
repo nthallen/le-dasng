@@ -45,6 +45,8 @@ typedef struct {
 #define TM_HDR_SIZE_T2 10
 #define TM_HDR_SIZE_T3 8
  
+/** Added to handle discrepancy between systems, 2019-12-10 */
+typedef int32_t le_time_t;
 
 /**
  * The time stamp establishes the relationship between
@@ -54,7 +56,8 @@ typedef struct {
  */
 typedef struct {
   mfc_t mfc_num;
-  time_t secs;
+  /* time_t secs; replaced with: */
+  le_time_t secs;
 } __attribute__((packed)) tstamp_t;
 
 typedef struct {

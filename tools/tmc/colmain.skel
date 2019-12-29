@@ -90,7 +90,7 @@ void DAS_IO::tmc_collector::event(enum tm_gen_event evt) {
  * happens in all circumstances. 
  */
 void DAS_IO::tmc_collector::service_row_timer() {
-  time_t rtime;
+  le_time_t rtime;
   long dt;
   
   #ifdef SUBBUS_H_INCLUDED

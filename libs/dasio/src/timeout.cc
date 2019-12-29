@@ -12,7 +12,7 @@ Timeout::Timeout() {
   Clear();
 }
 
-void Timeout::Set( time_t secs, long msecs ) {
+void Timeout::Set( le_time_t secs, long msecs ) {
   int whole_secs;
   int rv = clock_gettime(CLOCK_REALTIME, &when);
   if ( rv == -1 ) msg(MSG_FATAL, "Error from clock_gettime(); '%s'", strerror(errno) );

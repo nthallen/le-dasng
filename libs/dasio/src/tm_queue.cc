@@ -48,7 +48,7 @@ void tmq_ref::append_rows( int nrows ) {
   n_Qrows += nrows;
 }
 
-tmq_tstamp_ref::tmq_tstamp_ref( mfc_t MFCtr, time_t time ) {
+tmq_tstamp_ref::tmq_tstamp_ref( mfc_t MFCtr, le_time_t time ) {
   TS.mfc_num = MFCtr;
   TS.secs = time;
   ref_count = 0;
@@ -174,7 +174,7 @@ void tm_queue::commit_rows( mfc_t MFCtr, int mfrow, int nrows ) {
 /**
  * Does not signal whoever is reading the queue
  */
-void tm_queue::commit_tstamp( mfc_t MFCtr, time_t time ) {
+void tm_queue::commit_tstamp( mfc_t MFCtr, le_time_t time ) {
   tmq_tstamp_ref *tmqt = new tmq_tstamp_ref(MFCtr, time);
   tmq_ref *tmqd = new tmq_ref(MFCtr, 0, last, 0, tmqt);
   lock(__FILE__,__LINE__);

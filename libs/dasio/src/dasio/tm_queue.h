@@ -20,7 +20,7 @@ namespace DAS_IO {
 
 class tmq_tstamp_ref {
   public:
-    tmq_tstamp_ref( mfc_t MFCtr, time_t time );
+    tmq_tstamp_ref( mfc_t MFCtr, le_time_t time );
     tstamp_t TS;
     /** Counts tmq_ref references only */
     int ref_count;
@@ -97,7 +97,7 @@ class tm_queue {
   protected:
     int allocate_rows(unsigned char **rowp);
     void commit_rows( mfc_t MFCtr, int mfrow, int n_rows );
-    void commit_tstamp( mfc_t MFCtr, time_t time );
+    void commit_tstamp( mfc_t MFCtr, le_time_t time );
     void retire_rows( tmq_ref *tmqd, int n_rows );
     // void retire_tstamp( tmq_tstamp_ref *tmqts );
     bool next_tmqr(tmq_ref **tmqrp);

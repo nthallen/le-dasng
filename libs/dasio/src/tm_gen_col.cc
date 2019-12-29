@@ -24,7 +24,7 @@ void collector::event(enum tm_gen_event evt) {
   }
 }
 
-void collector::commit_tstamp( mfc_t MFCtr, time_t time ) {
+void collector::commit_tstamp( mfc_t MFCtr, le_time_t time ) {
   tm_info.t_stmp.mfc_num = MFCtr;
   tm_info.t_stmp.secs = time;
   tm_generator::commit_tstamp(MFCtr, time);

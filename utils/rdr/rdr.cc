@@ -246,29 +246,6 @@ void Reader::process_data() {
   unsigned char *raw = &data->data[0];
   int n_rows = data->n_rows;
   unsigned short MFCtr = data->mfctr;
-  // This is a work-around for a lgr bug which generated
-  // corrupted log files.
-  if ( opt_kluge_a ) {
-    if ( nrows_full_rec == 0 )
-      nrows_full_rec = n_rows;
-    if ( n_rows == nrows_full_rec ) {
-      last_rec_full = 1;
-    } else {
-      if ( n_rows * 2 < nrows_full_rec ||
-          ((!last_rec_full) && n_rows*2 == nrows_full_rec )) {
-        // We won't use this record, but we might record
-        // the MFCtr
-        if ( last_rec_full ) frac_MFCtr = MFCtr;
-        last_rec_full = 0;
-        return;
-      } else {
-        // We'll use this record, but may need to get
-        // MFCtr from the previous fragment
-        if ( !last_rec_full ) MFCtr = frac_MFCtr;
-        last_rec_full = 0;
-      }
-    }
-  }
 
   // Can check here for time limits
   // Given MFCtr, timestamp, we can calculate the time. We can
